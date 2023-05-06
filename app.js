@@ -1,6 +1,6 @@
 const display = document.querySelector(".display");
 const numbers = document.querySelectorAll(".number");
-const operator = document.querySelectorAll(".operator");
+const operators = document.querySelectorAll(".operator");
 const equal = document.querySelector(".equal");
 const clearAll = document.querySelector(".clearAll");
 const clearLast = document.querySelector(".clearLast");
@@ -32,7 +32,7 @@ numbers.forEach((number) => {
   });
 });
 
-operator.forEach((operator) => {
+operators.forEach((operator) => {
 operator.addEventListener("click", (e) => {
   if (!displayNumber || displayNumber <= 0) return; 
   haveDot = false;
@@ -57,21 +57,20 @@ operator.addEventListener("click", (e) => {
 function operation() {
   if (lastOperator === "x") {
     result = parseFloat(result) * parseFloat(displayNumber);
-    display.innerHTML = Math.round(result);
+    display.innerHTML = (result);
   } else if (lastOperator === "+") {
     result = parseFloat(result) + parseFloat(displayNumber);
-    display.innerHTML = Math.round(result);
+    display.innerHTML = (result);
   } else if (lastOperator === "-") {
     result = parseFloat(result) - parseFloat(displayNumber);
-    display.innerHTML = Math.round(result);
+    display.innerHTML = (result);
   } else if (lastOperator === "/") {
     result = parseFloat(result) / parseFloat(displayNumber);
     if (parseFloat(result) === 0 || parseFloat(displayNumber) === 0) {
-      display.innerHTML = "clear screen ";
       clear();
       return;
     }
-    display.innerHTML = Math.round(result);
+    display.innerHTML = (result);
   } else if (lastOperator === "%") {
     result = parseFloat(result) % parseFloat(displayNumber);
     display.innerHTML = Math.round(result);
@@ -81,7 +80,7 @@ function operation() {
 equal.addEventListener("click", () => {
   if (!displayNumber || !result) return;
   displayNumber = operation().toString();
-  display.innerHTML = displayNumber;
+  display.innerHTML = operation();
   lastOperator = "";
 });
 
